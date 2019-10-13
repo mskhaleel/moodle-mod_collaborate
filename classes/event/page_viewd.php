@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Page viewed events class
  *
@@ -22,13 +23,16 @@
  * @see https://github.com/moodlehq/moodle-mod_collaborate
  * @see https://github.com/justinhunt/moodle-mod_collaborate
  */
+
 namespace mod_collaborate\event;
 defined('MOODLE_INTERNAL') || die();
+
 class page_viewed extends \core\event\base {
     protected function init() {
         $this->data['crud'] = 'r';
         $this->data['edulevel'] = self::LEVEL_PARTICIPATING;
     }
+
     public static function get_name() {
         return get_string('pageviewed', 'mod_collaborate');
     }
@@ -43,4 +47,5 @@ class page_viewed extends \core\event\base {
                 in the Collaborate activity with course
                 module id '$this->contextinstanceid'.";
     }
+
 }
