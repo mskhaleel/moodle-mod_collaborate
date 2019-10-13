@@ -60,6 +60,10 @@ $PAGE->set_heading(format_string($course->fullname));
 $completion = new completion_info($course);
 $completion->set_module_viewed($cm);
 
+// Let's add the module viewed event.
+$event = \mod_collaborate\event\page_viewed::create(['context' => $PAGE->context]);
+$event->trigger();
+
 // The renderer performs output to the page.
 $renderer = $PAGE->get_renderer('mod_collaborate');
 
