@@ -14,12 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-
 /**
- * English strings for collaborate
- *
- * You can have a rather longer description of the file as well,
- * if you like, and it can span multiple lines.
+ * Page viewed events class
  *
  * @package    mod_collaborate
  * @copyright  2019 Richard Jones richardnz@outlook.com
@@ -28,20 +24,28 @@
  * @see https://github.com/justinhunt/moodle-mod_collaborate
  */
 
+namespace mod_collaborate\event;
 defined('MOODLE_INTERNAL') || die();
 
-$string['modulename'] = 'collaborate';
-$string['modulenameplural'] = 'collaborates';
-$string['modulename_help'] = 'Use the collaborate module for... | The collaborate module allows...';
-$string['collaborate:addinstance'] = 'Add a new collaborate';
-$string['collaborate:submit'] = 'Submit collaborate';
-$string['collaborate:view'] = 'View collaborate';
-$string['collaboratefieldset'] = 'Custom example fieldset';
-$string['collaboratename'] = 'collaborate name';
-$string['collaboratename_help'] = 'This is the content of the help tooltip associated with the collaboratename field. Markdown syntax is supported.';
-$string['collaborate'] = 'collaborate';
-$string['pluginadministration'] = 'collaborate administration';
-$string['pluginname'] = 'collaborate';
+class page_viewed extends \core\event\base {
+    protected function init() {
+        $this->data['crud'] = 'r';
+        $this->data['edulevel'] = self::LEVEL_PARTICIPATING;
+    }
 
-// Mod form specific collaborate settings.
-$string['title'] = 'Activity Title: ';
+    public static function get_name() {
+        return get_string('pageviewed', 'mod_collaborate');
+    }
+    /**
+     * Returns non-localised event description with id's for admin use only.
+     *
+     * @return string
+     */
+    public function get_description() {
+        return "The user with id '$this->userid' has
+                viewed a page with the id '$this->objectid'
+                in the Collaborate activity with course
+                module id '$this->contextinstanceid'.";
+    }
+
+}
