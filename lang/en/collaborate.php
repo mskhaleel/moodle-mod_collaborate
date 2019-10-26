@@ -46,3 +46,8 @@ $string['pageviewed']='collabrate page view';
 
 // Mod form specific collaborate settings.
 $string['title'] = 'Activity Title: ';
+
+
+// Mod form specific collaborate settings.
+$string['title'] = 'Activity Title: ';
+$string['texteditor'] = 'editor {$a}';
